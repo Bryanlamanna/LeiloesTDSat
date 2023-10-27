@@ -15,7 +15,11 @@ public class cadastroVIEW extends javax.swing.JFrame {
     public cadastroVIEW() {
         initComponents();
     }
-
+    
+    public void limpar() {
+        cadastroNome.setText("");
+        cadastroValor.setText("");
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -140,16 +144,20 @@ public class cadastroVIEW extends javax.swing.JFrame {
     }//GEN-LAST:event_cadastroNomeActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        ProdutosDTO produto = new ProdutosDTO();
+        ProdutosDTO produto = new ProdutosDTO(null, null, null,null);
         String nome = cadastroNome.getText();
         String valor = cadastroValor.getText();
         String status = "A Venda";
         produto.setNome(nome);
-        produto.setValor(Integer.parseInt(valor));
+        produto.setValor(valor);
         produto.setStatus(status);
         
         ProdutosDAO produtodao = new ProdutosDAO();
         produtodao.cadastrarProduto(produto);
+        
+                
+        limpar();
+        
         
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
