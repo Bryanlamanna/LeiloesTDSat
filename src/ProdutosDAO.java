@@ -74,6 +74,8 @@ public class ProdutosDAO {
             
             prep.executeUpdate();
             
+            JOptionPane.showMessageDialog(null, "Produto vendido com sucesso!");
+            
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "erro\n"+e.getMessage());
         } catch (ClassNotFoundException ex) {
