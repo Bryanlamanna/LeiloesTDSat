@@ -60,7 +60,6 @@ public class ProdutosDAO {
     
     public void venderProduto (String id){
         
-        
         try {
             
             conn = new conectaDAO().connectDB();
@@ -113,7 +112,35 @@ public class ProdutosDAO {
         return listagem;
     }
     
-    
+    public ArrayList<ProdutosDTO> listarVendas(){
+        ArrayList<ProdutosDTO> listagem = new ArrayList<>();
+        try {
+            
+            
+        
+        String sql = "select id_produto, nome, valor, status from produtos where status = 'VENDIDO';";
+        conn = new conectaDAO().connectDB();
+        
+        prep = conn.prepareStatement(sql);
+        resultset = prep.executeQuery();
+        
+        while (resultset.next()){
+            int id = resultset.getInt("id_produto");
+            String nome = resultset.getString("nome");
+            String valor = resultset.getString("valor");
+            String status = resultset.getString("status");
+
+            ProdutosDTO produto = new ProdutosDTO(id, nome, valor, status);
+
+            listagem.add(produto); // Adicione o objeto à lista
+                                }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "erro na listagem\n"+e.getMessage());
+        } 
+
+        
+        return listagem;
+    }
     
         
 }
